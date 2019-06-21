@@ -1,0 +1,36 @@
+{
+  "type": "record",
+  "name": "AvroHttpRequest",
+  "namespace": "com.example.avroproducer.model",
+  "fields": [
+    {
+      "name": "requestTime",
+      "type": "long"
+    },
+    {
+      "name": "clientIdentifier",
+      "type": {
+        "type": "record",
+        "name": "ClientIdentifier",
+        "fields": [
+          {
+            "name": "hostName",
+            "type": "string"
+          },
+          {
+            "name": "ipAddress",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "employeeNames",
+      "type": {
+        "type": "array",
+        "items": "string"
+      },
+      "default": null
+    }
+  ]
+}
