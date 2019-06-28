@@ -3,7 +3,6 @@ package com.example.avroproducer;
 import com.example.avroproducer.model.AvroHttpRequest;
 import com.example.avroproducer.model.ClientIdentifier;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +12,7 @@ import java.util.Arrays;
 
 
 @RestController
-@EnableBinding(Source.class)
+@EnableBinding(MessageStreams.class)
 public class ProducerController {
 
     private SerDes serDes;
@@ -29,7 +28,7 @@ public class ProducerController {
         AvroHttpRequest avroHttpRequest = createAvroHttpRequest();
         byte[] serializedRecord = serDes.serializeSpecificToBinary(avroHttpRequest);
         output.send(MessageBuilder.withPayload(serializedRecord).build());
-
+        System.out.println("Message Sent");
         return "";
     }
 
