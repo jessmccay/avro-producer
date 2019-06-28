@@ -18,5 +18,7 @@ public class Consumer {
     @StreamListener(MessageStreams.INPUT_STREAM)
     public void streamHandler(byte[] messageRequest, @Headers MessageHeaders headers) {
         AvroHttpRequest request = serDes.deserializeToBinary(messageRequest);
+        System.out.println(request.toString());
+        System.out.println("Message Headers:  " + headers);
     }
 }
